@@ -24,3 +24,7 @@ Page is redirecting many times
 
 'UserDetailsForm' object has no attribute 'cleaned_data'
 it is because form gets cleaned_data only after is_valid() function is called
+
+
+changes
+- New log out button for account-details page
