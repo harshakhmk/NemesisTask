@@ -1,0 +1,26 @@
+- During handling of the above exception ('SessionStore' object has no attribute '_session_cache'), another exception occurred:
+occured because of having an custm defined middleware  and due to presence of "django.contrib.sessions.middleware.SessionMiddleware", in settings which
+caused it to look into data base tables for sessions and it is not able to find sessions in DB so above exception
+
+- AutoLogout class that I defined takes no params error
+solved it by taking get_response param in its constructor
+
+- django.core.management.base.SystemCheckError: SystemCheckError: System check identified some issues:
+
+ERRORS:
+?: (admin.E410) 'django.contrib.sessions.middleware.SessionMiddleware' must be in MIDDLEWARE in order to use the admin application.
+        HINT: Insert 'django.contrib.sessions.middleware.SessionMiddleware' before 'django.contrib.auth.middleware.AuthenticationMiddleware'
+        Solved by clearing local cookies on broswer
+
+
+Issue with form submission, using ModelForm and fields are made default to required, need to make them not required
+
+
+WSGI requests has no put attribute, so post,put data comes in request.POST only for
+
+
+Page is redirecting many times
+
+
+'UserDetailsForm' object has no attribute 'cleaned_data'
+it is because form gets cleaned_data only after is_valid() function is called
