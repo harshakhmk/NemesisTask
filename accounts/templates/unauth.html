@@ -14,5 +14,23 @@
 <h1 style="text-align:center;">Hello User, Please Login to see the functionality of application</h1>
 <a href="{% url 'login' %}" class="btn btn-primary" style="float: right;">Login</a>
 <a href="{% url 'register' %}" class="btn btn-secondary" style="float: right;">Register</a>
+
+<div>
+    {% if messages %}
+          <ul class="messages">
+              {% for msg in messages %}
+              <div class="alert alert-info alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{msg.message}}
+              </div>
+              {% endfor %}
+          </ul>
+          {% endif %}
+</div>
+<script>
+    setTimeout(function() {
+        $('.messages').fadeOut('fast');
+    }, 10000);
+</script>
 </body>
 </html>

@@ -15,5 +15,24 @@
  <h2 style="text-align:center;">Welcome to this Awesome Application</h2>
  <a href="{% url 'logout' %}" class="btn btn-primary" style="float: right;">Logout</a>
 <a href="{% url 'account-details' %}" class="btn btn-secondary" style="float: left;">Account Details</a>
+
+<div>
+    {% if messages %}
+    <ul class="messages">
+        {% for msg in messages %}
+        <div class="alert alert-info alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            {{msg.message}}
+          </div>
+        {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+  <script>
+    setTimeout(function() {
+        $('.messages').fadeOut('fast');
+    }, 10000); // <-- time in milliseconds
+          </script>
+
 </body>
 </html>

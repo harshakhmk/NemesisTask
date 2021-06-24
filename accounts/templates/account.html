@@ -11,7 +11,8 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello {{request.user.username}}</h1>
+    <h1 style="text-align:center;">Hello {{request.user.username}}</h1>
+    <a href="{% url 'logout' %}" class="btn btn-primary" style="float: right;">Logout</a>
     <form action="{% url 'account-details' %}" method="post">
       {% csrf_token %}
     <input type="hidden" name="_method" value="delete">
@@ -43,16 +44,15 @@
 
         </tbody>
       </table>
-
+     <!--
       <form method="post" id="new_group" onsubmit="submit_handler()">{% csrf_token %}
         <div class="form-group row justify-content-center">
           <div class="col-10">
-            <!--<input type="text" class="form-control border" id="name" name="name" placeholder="Name...">-->
             <input type="submit" id="new_btn" class="btn btn-info">
           </div>
         </div>
       </form>
-
+    -->
       <div class="modal" tabindex="-1" role="dialog" style="display:none" id="exampleModal">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -85,12 +85,27 @@
           </div>
         </div>
       </div>
+      <div>
+        {% if messages %}
+        <ul class="messages">
+            {% for msg in messages %}
+            <div class="alert alert-info alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              {{msg.message}}
+            </div>
+            {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
 <script>
 function submit_handler() {
   console.log("modal opened"); //send with ajax?
   $('#exampleModal').modal('show');
   event.preventDefault();
 }
+setTimeout(function() {
+        $('.messages').fadeOut('fast');
+    }, 30000); // <-- time in milliseconds
 /*
 function submitform() {
   $('#new_group').submit();

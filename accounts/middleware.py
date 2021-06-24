@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth import logout
-
+from django.contrib import messages
 
 class AutoLogout(object):
     def __init__(self, get_response):
@@ -19,6 +19,7 @@ class AutoLogout(object):
                 0, settings.AUTO_LOGOUT_DELAY * 60, 0
             ):
                 logout(request)
+                messages.success(request, "Your session has been expired, please log in again")
                 del request.session["last_touch"]
                 return self.get_response(request)
             else:

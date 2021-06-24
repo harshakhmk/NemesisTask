@@ -96,14 +96,26 @@ a {
           <button type="submit" class="registerbtn">Register</button>
         </div>
         <div>
-            {% for message in messages   %}
-           <h3>{{message}}</h3>
-            {% endfor  %}
+          {% if messages %}
+          <ul class="messages">
+              {% for msg in messages %}
+              <div class="alert alert-info alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{msg.message}}
+              </div>
+              {% endfor %}
+          </ul>
+          {% endif %}
         </div>
         <div class="container signin">
           <p>Already have an account? <a href="{%url 'login' %}">Login</a></p> in</a></p>
         </div>
       </form>
 
+      <script>
+setTimeout(function() {
+    $('.messages').fadeOut('fast');
+}, 30000); // <-- time in milliseconds
+      </script>
 </body>
 </html>

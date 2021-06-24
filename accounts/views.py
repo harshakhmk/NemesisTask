@@ -36,6 +36,7 @@ def RegisterView(request):
 def Logout(request):
 
     logout(request)
+    messages.success(request, "You have been logged out")
     return redirect("/")
 
 
@@ -90,9 +91,7 @@ def account_details(request):
             user.username = username
         if address is not None:
             user.address = address
-        print(request.POST)
         user.save()
-        print("It happened")
         messages.success(request, "Your details have been updated")
         return redirect("account-details")
 
